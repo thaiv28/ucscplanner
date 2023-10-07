@@ -11,12 +11,12 @@ import picocli.CommandLine.Parameters;
 
 @Component
 @Command(name = "checksc", mixinStandardHelpOptions = true, 
-version = "checksc 1.0", description = "Checks given course list to ensure that" + 
+version = "checksc 1.0", description = "Checks given course list to ensure that " + 
 "those courses will meet graduation requirements.")
 public class CheckCommand implements Callable<Integer>{
 
-    @Parameters(paramLabel = "FILE", description = "csv containing" +  
-        "courses", index = "0")
+    @Parameters(paramLabel = "FILE", description = "csv containing " +  
+        "list of courses", index = "0")
         File coursesFile;
 
     @Autowired
