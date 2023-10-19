@@ -23,6 +23,10 @@ public class Course {
 
     public Course(){}
 
+    // public Course(String code){
+    //     this.code = code;
+    // }
+
     public Course(String code, String name, String num, int credits,
     String prof, String genEd, boolean repeat, String quarters, 
     String prereqs){

@@ -3,6 +3,8 @@ package com.thaiv.ucscplanner.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.thaiv.ucscplanner.models.Course;
+
 import java.io.File;
 import java.util.concurrent.Callable;
 
@@ -23,7 +25,11 @@ public class CheckCommand implements Callable<Integer>{
     private CourseService courseService;
 
     public Integer call() throws Exception {
-        //courseService
+        
+        for(Course c :courseService.getAllCourses()){
+            System.out.println(c);
+            System.out.println("xyza");
+        }
         return 0;
     }
 

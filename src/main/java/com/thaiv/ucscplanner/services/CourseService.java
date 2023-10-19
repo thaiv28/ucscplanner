@@ -18,17 +18,20 @@ public class CourseService {
     @Autowired
     public CourseService(CourseRepository courseRepository){
         this.courseRepository = courseRepository;
+        
     }
 
     public List<Course> getAllCourses() {
+    
         List<Course> courses = new ArrayList<>();
         courseRepository.findAll().forEach(courses::add);
         return courses;
     }
 
     // return arraylist of courses by parsing through courseFile and 
-    // returning every couse from repository
+    // returning every course from repository
     public ArrayList<Course> parseCoursesFile(File courseFile) {
+        
         return null;
     }
 
