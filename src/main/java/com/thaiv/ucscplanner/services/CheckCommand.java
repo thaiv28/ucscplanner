@@ -28,6 +28,9 @@ public class CheckCommand implements Callable<Integer>{
     
         for(Course c :courseService.getAllCourses()){
             System.out.println(c.getCode());
+            // System.out.print(c.getProf());
+            // System.out.print(c.getPrereqs());
+            // System.out.println(c.getGenEd());
         }
         return 0;
     }

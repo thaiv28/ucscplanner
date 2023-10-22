@@ -13,13 +13,14 @@ public class Course {
     @Id
     private String code;
     private String name;
+    private String subject;
     private String num;
     private int credits;
     private String prof;
-    private List<String> genEd;
-    private boolean repeat;
-    private List<String> quarters;
-    private List<String> prereqs;
+    private String genEd;
+    private String repeat;
+    private String quarters;
+    private String prereqs;
 
     public Course(){}
 
@@ -27,20 +28,20 @@ public class Course {
         this.code = code;
     }
 
-    public Course(String code, String name, String num, int credits,
-    String prof, String genEd, boolean repeat, String quarters, 
+    public Course(String code, String name, String subject, String num, 
+    int credits, String prof, String genEd, String repeat, String quarters, 
     String prereqs){
 
         this.code = code;
         this.name = name;
+        this.subject = subject;
         this.num = num;
         this.credits = credits;
         this.prof = prof;
         this.repeat = repeat;
- 
-        this.genEd = strToArrayList(genEd);
-        this.quarters = strToArrayList(quarters);
-        this.prereqs = strToArrayList(prereqs);
+        this.genEd = genEd;
+        this.quarters = quarters;
+        this.prereqs = prereqs;
         
     }
 
@@ -56,6 +57,10 @@ public class Course {
         return this.name;
     }
 
+    private String getSubject() {
+        return this.subject;
+    }
+
     public String getNum() {
         return this.num;
     }
@@ -68,23 +73,19 @@ public class Course {
         return this.prof;
     }
 
-    public List<String> getGenEd() {
+    public String getGenEd() {
         return this.genEd;
     }
 
-    public boolean isRepeat() {
+    public String getRepeat() {
         return this.repeat;
     }
 
-    public boolean getRepeat() {
-        return this.repeat;
-    }
-
-    public List<String> getQuarters() {
+    public String getQuarters() {
         return this.quarters;
     }
 
-    public List<String> getPrereqs() {
+    public String getPrereqs() {
         return this.prereqs;
     }
 

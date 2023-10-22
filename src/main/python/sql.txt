@@ -5746,4 +5746,4 @@ INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, qua
 ('YIDD1', 'First-Year Yiddish', 'YIDD', 1, 5, 'The Staff', 'ER', 'False', NULL, NULL),
 ('YIDD2', 'First-Year Yiddish', 'YIDD', 2, 5, 'The Staff', NULL, 'False', 'Spring', 'YIDD 1'),
 ('YIDD3', 'First-Year Yiddish', 'YIDD', 3, 5, 'The Staff', NULL, 'False', NULL, 'YIDD 2'),
-('YIDD99F', 'Tutorial', 'YIDD', '99F', 2, NULL, NULL, 'True', 'Fall, Winter, Spring', NULL);
+('YIDD99F', 'Tutorial', 'YIDD', '99F', 2, NULL, NULL, 'True', 'Fall, Winter, Spring', NULL),
