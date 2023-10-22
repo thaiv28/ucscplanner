@@ -22,7 +22,7 @@ public class CourseService {
     }
 
     public List<Course> getAllCourses() {
-    
+        courseRepository.save(new Course("CSE120"));
         List<Course> courses = new ArrayList<>();
         courseRepository.findAll().forEach(courses::add);
         return courses;

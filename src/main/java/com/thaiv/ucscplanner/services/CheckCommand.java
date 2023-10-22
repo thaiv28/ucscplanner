@@ -25,10 +25,9 @@ public class CheckCommand implements Callable<Integer>{
     private CourseService courseService;
 
     public Integer call() throws Exception {
-        
+    
         for(Course c :courseService.getAllCourses()){
-            System.out.println(c);
-            System.out.println("xyza");
+            System.out.println(c.getCode());
         }
         return 0;
     }
