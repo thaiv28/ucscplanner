@@ -1,9 +1,15 @@
 package com.thaiv.ucscplanner.services;
 
-import com.thaiv.ucscplanner.models.UserCourses;
+import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
+import com.thaiv.ucscplanner.models.Course;
+
+
+@Service
 public interface CheckService {
 
-    public boolean check(UserCourses user);
+    public Object check(ArrayList<Course> courses);
 
 }
