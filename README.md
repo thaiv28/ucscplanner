@@ -8,7 +8,7 @@ column.
 Use maven to run the java application. Use the command "checksc" with the csv
 file as the only parameter.
 ```java
-mvn spring-boot:run -Dspring-boot.run.arguments="courselist.csv"
+mvn spring-boot:run -Dspring-boot.run.arguments="example.csv"
 ```
 
 This will return a statement confirming or denying that the proposed courses
