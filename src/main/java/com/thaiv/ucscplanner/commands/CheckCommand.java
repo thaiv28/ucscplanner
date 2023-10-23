@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.thaiv.ucscplanner.models.Course;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 import picocli.CommandLine.Command;
@@ -25,12 +26,9 @@ public class CheckCommand implements Callable<Integer>{
     private CourseService courseService;
 
     public Integer call() throws Exception {
-    
-        for(Course c :courseService.getAllCourses()){
-            System.out.println(c.getCode());
-            // System.out.print(c.getProf());
-            // System.out.print(c.getPrereqs());
-            // System.out.println(c.getGenEd());
+        ArrayList<Course> courses = courseService.parseCSV(coursesFile);
+        for(Course course:courses){
+            System.out.println(course.getCode());
         }
         return 0;
     }
