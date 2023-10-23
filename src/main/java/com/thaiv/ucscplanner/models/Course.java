@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Entity
 public class Course {
@@ -55,10 +54,6 @@ public class Course {
 
     public String getName() {
         return this.name;
-    }
-
-    private String getSubject() {
-        return this.subject;
     }
 
     public String getNum() {

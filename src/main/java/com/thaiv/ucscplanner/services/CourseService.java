@@ -54,4 +54,16 @@ public class CourseService {
         return courses;
     }
 
+    public Course getById(String id){
+
+        if(courseRepository.findById(id).isPresent()) {
+            return courseRepository.findById(id).get();
+        } else {
+            System.out.println("Error: Class " + id + " invalid");
+            System.exit(2);
+            return null;
+        }
+            
+    }
+
 }
