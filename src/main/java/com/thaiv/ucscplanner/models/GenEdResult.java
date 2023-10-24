@@ -1,13 +1,13 @@
 package com.thaiv.ucscplanner.models;
 
-import jakarta.persistence.Entity;
+import java.util.ArrayList;
 
 public class GenEdResult {
 
     private boolean bool;
-    private String genEd;
+    private ArrayList<String> genEd;
 
-    public GenEdResult(boolean bool, String genEd) {
+    public GenEdResult(boolean bool, ArrayList<String> genEd) {
         this.bool = bool;
         this.genEd = genEd;
     }
@@ -16,7 +16,7 @@ public class GenEdResult {
         return this.bool;
     }
 
-    public String getGenEd() {
+    public ArrayList<String> getGenEd() {
         return this.genEd;
     }
 }

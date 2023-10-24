@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.thaiv.ucscplanner.models.Course;
+import com.thaiv.ucscplanner.models.GenEdResult;
 import com.thaiv.ucscplanner.services.CourseService;
 import com.thaiv.ucscplanner.services.GenEdService;
 
@@ -32,13 +33,18 @@ public class GenEdCommand implements Callable<Integer> {
     public Integer call() throws Exception {
         ArrayList<Course> courses = courseService.parseCSV(coursesFile);
     
+        GenEdResult results = genEdService.check(courses);
         
-        if(genEdService.check(courses).getBool()){
+        if(results.getBool()){
             System.out.println("The course list fulfills the general education " +
             "graduation requirements.");
         } else {
             System.out.println("The course list does not fulfill the general education " +
-            "graduation requirements. Missing requirement: " + genEdService.check(courses).getGenEd());
+            "graduation requirements. Missing requirements: ");
+            for(String str : results.getGenEd()){
+                System.out.print(str + ", ");
+            }
+
         }
 
         return 0;

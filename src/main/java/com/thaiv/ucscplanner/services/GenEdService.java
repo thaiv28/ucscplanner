@@ -20,7 +20,8 @@ public class GenEdService implements CheckService{
 
     @Override
     public GenEdResult check(ArrayList<Course> courses){
-        HashMap<String, Boolean> map = initMap();
+        HashMap<String, Integer> map = initUserMap();
+        HashMap<String, Integer> reqMap = initReqMap();
         for(Course course : courses){
             String genEd = course.getGenEd();
 
@@ -29,36 +30,63 @@ public class GenEdService implements CheckService{
             }
 
             if(genEd.equals("C")){
-                    map.put(genEd, true);
+                    map.put(genEd, course.getCredits() + map.get(genEd));
                     continue;
                 }
-
-            map.put(genEd.substring(0, 2), true);
+            
+            // add credits of course to map
+            map.put(genEd.substring(0, 2),
+            course.getCredits() + map.get(genEd.substring(0,2)));
         
         }
 
+        ArrayList<String> missingGens = new ArrayList<>();
+
         for(String genEd : map.keySet()){
-            if(map.get(genEd) == false){
-                return new GenEdResult(false, genEd);
+            if(map.get(genEd) < reqMap.get(genEd)){
+                missingGens.add(genEd);
             }
         }
-        return new GenEdResult(true, null);
+
+        if(missingGens.isEmpty()){
+            return new GenEdResult(true, null);
+        } else {
+            return new GenEdResult(false, missingGens);
+        }
+
+        
     }
 
-    public HashMap<String, Boolean> initMap() {
-        HashMap<String, Boolean> courses = new HashMap<>();
-        courses.put("CC", false);
-        courses.put("ER", false);
-        courses.put("IM", false);
-        courses.put("MF", false);
-        courses.put("SI", false);
-        courses.put("SR", false);
-        courses.put("TA", false);
-        courses.put("PE", false);
-        courses.put("PR", false);
-        courses.put("C", false);
+    public HashMap<String, Integer> initUserMap() {
+        HashMap<String, Integer> courses = new HashMap<>();
+        courses.put("CC", 0);
+        courses.put("ER", 0);
+        courses.put("IM", 0);
+        courses.put("MF", 0);
+        courses.put("SI", 0);
+        courses.put("SR", 0);
+        courses.put("TA", 0);
+        courses.put("PE", 0);
+        courses.put("PR", 0);
+        courses.put("C", 0);
 
         return courses;
 
+    }
+
+    public HashMap<String, Integer> initReqMap() {
+        HashMap<String, Integer> courses = new HashMap<>();
+        courses.put("CC", 5);
+        courses.put("ER", 5);
+        courses.put("IM", 5);
+        courses.put("MF", 5);
+        courses.put("SI", 5);
+        courses.put("SR", 5);
+        courses.put("TA", 5);
+        courses.put("PE", 5);
+        courses.put("PR", 2);
+        courses.put("C",5);
+
+        return courses;
     }
 }
