@@ -56,6 +56,10 @@ public class Course {
         return this.name;
     }
 
+    private String getSubject() {
+        return this.subject;
+    }
+
     public String getNum() {
         return this.num;
     }
