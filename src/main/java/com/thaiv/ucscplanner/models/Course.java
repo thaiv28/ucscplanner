@@ -19,7 +19,7 @@ public class Course {
     private String genEd;
     private String repeat;
     private String quarters;
-    private String prereqs;
+    private String preqs;
 
     public Course(){}
 
@@ -29,7 +29,7 @@ public class Course {
 
     public Course(String code, String name, String subject, String num, 
     int credits, String prof, String genEd, String repeat, String quarters, 
-    String prereqs){
+    String preqs){
 
         this.code = code;
         this.name = name;
@@ -40,7 +40,7 @@ public class Course {
         this.repeat = repeat;
         this.genEd = genEd;
         this.quarters = quarters;
-        this.prereqs = prereqs;
+        this.preqs = preqs;
         
     }
 
@@ -84,8 +84,8 @@ public class Course {
         return this.quarters;
     }
 
-    public String getPrereqs() {
-        return this.prereqs;
+    public String getPreqs() {
+        return this.preqs;
     }
 
 }

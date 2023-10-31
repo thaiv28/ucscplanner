@@ -1,4 +1,4 @@
-INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, prereqs) VALUES
+INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, preqs) VALUES
 ('ACEN110A', 'Advanced Academic English 1', 'ACEN', '110A', 5, 'The Staff', NULL, 'False', NULL, NULL),
 ('ACEN110B', 'Advanced Academic English 2', 'ACEN', '110B', 5, 'The Staff', NULL, 'False', NULL, NULL),
 ('ACEN110C', 'Advanced Grammar in Context', 'ACEN', '110C', 5, 'The Staff', NULL, 'False', NULL, NULL),
