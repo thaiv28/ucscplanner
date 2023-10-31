@@ -32,7 +32,7 @@ public class CreditCommand implements Callable<Integer> {
     public Integer call() throws Exception {
         ArrayList<Course> courses = courseService.parseCSV(coursesFile);
 
-        if(creditService.check(courses)){
+        if(creditService.check(courses).getBool()){
             System.out.println("The course list fulfills the graduation requirement " +
             "for credits. Credit count: " + creditService.getCredits(courses));
         } else {

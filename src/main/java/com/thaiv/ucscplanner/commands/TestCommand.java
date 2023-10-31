@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.thaiv.ucscplanner.models.Course;
 import com.thaiv.ucscplanner.services.CourseService;
+import com.thaiv.ucscplanner.services.CreditService;
+import com.thaiv.ucscplanner.services.GenEdService;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
@@ -24,12 +26,17 @@ public class TestCommand implements Callable<Integer> {
     
     @Autowired
     private CourseService courseService;
+    @Autowired 
+    private CreditService creditService;
+    @Autowired
+    private GenEdService genEdService;
+
 
     public Integer call() throws Exception {
         ArrayList<Course> courses = courseService.parseCSV(coursesFile);
-        for(Course course:courses){
-            System.out.println(course.getGenEd());
-        }
+        creditService.check(courses);
+        genEdService.check(courses);
+
         return 0;
     }
 }

@@ -3,20 +3,13 @@ package com.thaiv.ucscplanner.services;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thaiv.ucscplanner.models.Course;
 import com.thaiv.ucscplanner.models.GenEdResult;
-import com.thaiv.ucscplanner.repositories.CourseRepository;
 
 @Service
 public class GenEdService implements CheckService{
-
-    @Autowired
-    private CourseService courseService;
-    @Autowired
-    private CourseRepository courseRepository;
 
     @Override
     public GenEdResult check(ArrayList<Course> courses){
@@ -48,13 +41,7 @@ public class GenEdService implements CheckService{
             }
         }
 
-        if(missingGens.isEmpty()){
-            return new GenEdResult(true, null);
-        } else {
-            return new GenEdResult(false, missingGens);
-        }
-
-        
+        return new GenEdResult(missingGens);  
     }
 
     public HashMap<String, Integer> initUserMap() {
