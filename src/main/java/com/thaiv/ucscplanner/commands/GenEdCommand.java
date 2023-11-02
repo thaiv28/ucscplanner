@@ -35,7 +35,7 @@ public class GenEdCommand implements Callable<Integer> {
     
         GenEdResult results = genEdService.check(courses);
         
-        if(results.getBool()){
+        if(results.isSatisfy()){
             System.out.println("The course list fulfills the general education " +
             "graduation requirements.");
         } else {

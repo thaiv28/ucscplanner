@@ -37,13 +37,8 @@ public class CourseService {
         try(Scanner scanner = new Scanner(file)){
             while(scanner.hasNextLine()) {
                 String courseString = scanner.nextLine().replaceAll("\\s", "");
-
-                if(courseRepository.findById(courseString).isPresent()) {
-                    courses.add(courseRepository.findById(courseString).get());
-                } else {
-                    System.out.println("Error: Class " + courseString + " invalid");
-                    System.exit(2);
-                }
+                
+                courses.add(getById(courseString));
              
             }
         }
@@ -54,7 +49,33 @@ public class CourseService {
         return courses;
     }
 
-    public Course getById(String id){
+    public ArrayList<Course> strToCourseList(String courseString){
+        ArrayList<Course> list = new ArrayList<>();
+
+        if(courseString == null){
+            return null;
+        }
+
+        String[] strList = courseString.split(",");
+
+        for(int i = 0; i < strList.length; i++){
+            strList[i] = strList[i].trim();
+        }
+
+        for(String str : strList){
+            list.add(getById(str));
+        }
+
+        if(list.size() == 0){
+            return null;
+        }
+
+        return list;
+    }
+
+    public Course getById(String id_spaces){
+
+        String id = id_spaces.replace(" ", "");
 
         if(courseRepository.findById(id).isPresent()) {
             return courseRepository.findById(id).get();

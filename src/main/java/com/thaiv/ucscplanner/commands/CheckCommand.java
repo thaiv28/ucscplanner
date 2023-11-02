@@ -14,7 +14,8 @@ version = "checksc 1.0", description = "Checks given course list to ensure that 
 subcommands = {
     CreditCommand.class,
     TestCommand.class,
-    GenEdCommand.class
+    GenEdCommand.class,
+    PreqCommand.class
 })
 public class CheckCommand{
 

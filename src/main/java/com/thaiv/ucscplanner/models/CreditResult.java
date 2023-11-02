@@ -2,14 +2,14 @@ package com.thaiv.ucscplanner.models;
 
 public class CreditResult implements Result{
 
-    private boolean bool;
+    private boolean satisfy;
 
     public CreditResult(boolean bool){
-        this.bool = bool;
+        this.satisfy = bool;
     }
 
-    public boolean getBool(){
-        return this.bool;
+    public boolean isSatsify(){
+        return this.satisfy;
     }
     
 }

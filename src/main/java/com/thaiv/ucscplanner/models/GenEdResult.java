@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GenEdResult implements Result{
 
-    private boolean bool;
+    private boolean satsify;
     private ArrayList<String> genEd;
 
     public GenEdResult(ArrayList<String> genEd){
@@ -14,16 +14,16 @@ public class GenEdResult implements Result{
             this.genEd = genEd;
         }
 
-        bool = genEd.isEmpty();
+        satsify= genEd.isEmpty();
     }
 
     public GenEdResult(boolean bool, ArrayList<String> genEd) {
-        this.bool = bool;
+        this.satsify= bool;
         this.genEd = genEd;
     }
 
-    public boolean getBool() {
-        return this.bool;
+    public boolean isSatisfy() {
+        return this.satsify;
     }
 
     public ArrayList<String> getGenEd() {

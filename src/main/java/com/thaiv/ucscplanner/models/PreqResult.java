@@ -1,29 +1,39 @@
 package com.thaiv.ucscplanner.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 
 public class PreqResult implements Result{
 
-    private HashMap<Course, ArrayList<Course>> courses;
-    private boolean bool;
+    private LinkedHashMap<Course, ArrayList<Course>> courseMap;
+    private ArrayList<Course> preqs;
+    private boolean satisfy;
     
 
-    public PreqResult(HashMap<Course, ArrayList<Course>> courses){
-        this.courses = courses;
-        if(courses.isEmpty()){
-            bool = true;
+    public PreqResult(LinkedHashMap<Course, ArrayList<Course>> courseMap,
+     ArrayList<Course> preqs){
+
+        this.courseMap = courseMap;
+        this.preqs = preqs;
+        if(preqs.isEmpty()){
+            this.satisfy = true;
         } else {
-            bool = false;
+            this.satisfy = false;
         }
+
     }
 
-    public HashMap<Course, ArrayList<Course>> getPreq(){
-        return this.courses;
+    public LinkedHashMap<Course, ArrayList<Course>> getMap(){
+        return this.courseMap;
     }
 
-    public boolean getBool(){
-        return this.bool;
+    public ArrayList<Course> getPreqs(){
+        return this.preqs;
+    }
+
+    public boolean isSatisfy(){
+        return this.satisfy;
     }
 
 }

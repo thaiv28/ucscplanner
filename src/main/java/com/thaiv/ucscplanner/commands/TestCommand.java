@@ -34,8 +34,6 @@ public class TestCommand implements Callable<Integer> {
 
     public Integer call() throws Exception {
         ArrayList<Course> courses = courseService.parseCSV(coursesFile);
-        creditService.check(courses);
-        genEdService.check(courses);
 
         return 0;
     }
