@@ -1,11 +1,13 @@
 package com.thaiv.ucscplanner.services;
 
+import static org.mockito.ArgumentMatchers.nullable;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +75,18 @@ public class CourseService {
         return list;
     }
 
+    public ArrayList<String> genEdArrayList(String str){
+        String[] arr = str.split(", ");
+        ArrayList<String> list = new ArrayList<>();
+
+        for(int i = 0; i < arr.length; i++){
+            list.add(arr[i]);
+        }
+        
+        return list;
+
+    }
+
     public Course getById(String id_spaces){
 
         String id = id_spaces.replace(" ", "");
@@ -86,5 +100,39 @@ public class CourseService {
         }
             
     }
+
+    public String getInfo(Course course) {
+        String str = "";
+
+        str = str.concat("\nCredits: " + course.getCredits());
+
+        if(course.getPreqs() != null){
+            str = str.concat("\nPrequisities: ");
+            for(Course c : strToCourseList(course.getPreqs())){
+                str = str.concat(c.getCode() + ", ");
+            }
+            str = str.substring(0, str.length() - 2);
+        }       
+
+        if(course.getGenEd() != null){
+            str = str.concat("\nGeneral Education Code: " + course.getGenEd());
+        }
+
+        if(course.getProf() != null){
+            str = str.concat("\nProfessor: " + course.getProf());
+        }
+
+        if(course.getQuarters() != null){
+            str = str.concat("\nQuarters Offered: " + course.getQuarters());
+        }
+
+        if(!course.getRepeat().equals("False")){
+            str = str.concat("\nRepeatable for Credit");
+        }
+
+
+        return str;
+    }
+    
 
 }

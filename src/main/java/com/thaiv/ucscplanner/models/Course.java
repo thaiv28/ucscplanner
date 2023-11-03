@@ -6,10 +6,6 @@ import jakarta.persistence.Id;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.thaiv.ucscplanner.services.CourseService;
-
 @Entity
 public class Course {
 
@@ -48,6 +44,14 @@ public class Course {
         
     }
 
+    public String toString() {
+        String str = "";
+
+        str = str.concat(subject + " " + num + " " + name);
+    
+        return str;
+    }
+
     public ArrayList<String> strToArrayList(String str){
         return new ArrayList<String>(Arrays.asList(str.split(", ")));
     }
@@ -60,7 +64,7 @@ public class Course {
         return this.name;
     }
 
-    private String getSubject() {
+    public String getSubject() {
         return this.subject;
     }
 
@@ -92,12 +96,7 @@ public class Course {
         return preqs;
     }
 
-    public String toString() {
-        String str = "";
-
-
-        return str;
-    }
+    
 
     
     @Override

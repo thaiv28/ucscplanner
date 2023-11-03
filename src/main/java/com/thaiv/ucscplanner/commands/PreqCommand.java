@@ -3,6 +3,7 @@ package com.thaiv.ucscplanner.commands;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class PreqCommand implements Callable<Integer> {
             System.out.println("The course list does not fulfill the " +
             "following requirements:");
 
-            HashMap<Course, ArrayList<Course>> map = result.getMap();
+            LinkedHashMap<Course, ArrayList<Course>> map = result.getMap();
 
             for(Course course : map.keySet()){
                 System.out.print(course.getCode() + ": ");

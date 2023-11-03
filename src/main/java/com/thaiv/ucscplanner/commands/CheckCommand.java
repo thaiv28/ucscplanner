@@ -15,7 +15,8 @@ subcommands = {
     CreditCommand.class,
     TestCommand.class,
     GenEdCommand.class,
-    PreqCommand.class
+    PreqCommand.class,
+    InfoCommand.class
 })
 public class CheckCommand{
 
