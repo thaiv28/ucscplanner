@@ -53,7 +53,7 @@ def sql_file(CLASSPATH):
             reader = csv.reader(csvfile)
             codes = []
             
-            f.write("INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, prereqs, prereqs_paragraph) VALUES\n")
+            f.write("INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, preqs, preqstr) VALUES\n")
             skip_row = False
             for row in reader:
                 skip_row = True
@@ -113,5 +113,5 @@ def sql_file(CLASSPATH):
 if __name__ == '__main__':
     CLASSPATH = "../resources/courselist.csv"
     
-    sql_file(CLASSPATH)
     # courses_to_csv(CLASSPATH)
+    sql_file(CLASSPATH)
