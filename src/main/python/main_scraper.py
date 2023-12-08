@@ -37,11 +37,6 @@ def courses_to_csv(CLASSPATH):
             
             courses.append(scrape(main))
             
-        # df = pd.DataFrame.from_records([c.to_dict() for c in courses])
-        # url_remove_backslash = url[:len(url) - 1]
-        # backslash = url_remove_backslash.rfind("/")
-        
-        # df.to_csv("./csv/" + url_remove_backslash[backslash:] + ".csv")
         print("Subject finished: " + url)
             
     df = pd.DataFrame.from_records([c.to_dict() for c in courses])
@@ -58,7 +53,7 @@ def sql_file(CLASSPATH):
             reader = csv.reader(csvfile)
             codes = []
             
-            f.write("INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, prereqs) VALUES\n")
+            f.write("INSERT INTO course (code, name, subject, num, credits, prof, gen_ed, repeat, quarters, prereqs, prereqs_paragraph) VALUES\n")
             skip_row = False
             for row in reader:
                 skip_row = True
@@ -80,7 +75,7 @@ def sql_file(CLASSPATH):
                     else: 
                         codes.append(row[j])
                         
-                        
+                    # i is value, j is index
                     i = row[j].strip()
                     i = i.replace("&", "and")
                     i = i.replace("'","")
@@ -95,6 +90,7 @@ def sql_file(CLASSPATH):
                         f.write(i)
                     else:
                         f.write("'" + i + "'")
+                    # check if end of row
                     if(j != len(row) - 1):
                         f.write(", ")
                 if not skip_row:

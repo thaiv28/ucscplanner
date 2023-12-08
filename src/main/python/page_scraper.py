@@ -17,7 +17,7 @@ def scrape(main):
     subject = text[:first_space]
     number = text[first_space:second_space]
     
-    professor, gen_ed, qtr, credits = "N/A", "N/A", "N/A", "N/A"
+    professor, gen_ed, qtr, credits, prereqs_p = "N/A", "N/A", "N/A", "N/A", "N/A"
     reqs = []
     repeat = False
     
@@ -29,6 +29,7 @@ def scrape(main):
             prereqs_html = div.find_all("a")
             for prereq in prereqs_html:
                 reqs.append(prereq.text)
+            prereqs_p = div.text.strip()[12:].strip()
         elif(div.find("h4").text.strip() == "Repeatable for credit"):
             if(div.find('p').text == "Yes"): 
                 repeat = True
@@ -51,7 +52,7 @@ def scrape(main):
             reqs = "N/A"
     
     return Course(code, name, subject, number, credits, professor, 
-                  reqs, gen_ed, repeat, qtr)
+                  reqs, gen_ed, repeat, qtr, prereqs_p)
     
      #takes course number + title (ex: ABC123 Learning the Alphabet) and splits into
     #different two different lists, one of the numbers and one of the titles
