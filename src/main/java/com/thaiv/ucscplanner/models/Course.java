@@ -1,11 +1,11 @@
 package com.thaiv.ucscplanner.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Entity
 public class Course {
@@ -21,7 +21,8 @@ public class Course {
     private String repeat;
     private String quarters;
     private String preqs;
-    private String preqStr;
+    @Column(length=1000)
+    private String preqstr;
 
     public Course(){}
 
@@ -31,7 +32,7 @@ public class Course {
 
     public Course(String code, String name, String subject, String num, 
     int credits, String prof, String genEd, String repeat, String quarters, 
-    String preqs, String preqStr){
+    String preqs, String preqstr){
 
         this.code = code;
         this.name = name;
@@ -43,7 +44,7 @@ public class Course {
         this.genEd = genEd;
         this.quarters = quarters;
         this.preqs = preqs;
-        this.preqStr = preqStr;
+        this.preqstr = preqstr;
         
     }
 
@@ -99,8 +100,8 @@ public class Course {
         return preqs;
     }
 
-    public String getPreqStr() {
-        return this.preqStr;
+    public String getPreqstr() {
+        return this.preqstr;
     }
 
     
@@ -118,7 +119,7 @@ public class Course {
         result = prime * result + ((repeat == null) ? 0 : repeat.hashCode());
         result = prime * result + ((quarters == null) ? 0 : quarters.hashCode());
         result = prime * result + ((preqs == null) ? 0 : preqs.hashCode());
-        result = prime * result + ((preqStr == null) ? 0 : preqStr.hashCode());
+        result = prime * result + ((preqstr == null) ? 0 : preqstr.hashCode());
         return result;
     }
 
@@ -178,10 +179,10 @@ public class Course {
                 return false;
         } else if (!preqs.equals(other.preqs))
             return false;
-        if (preqStr == null) {
-            if (other.preqStr != null)
+        if (preqstr == null) {
+            if (other.preqstr != null)
                 return false;
-        } else if (!preqStr.equals(other.preqStr))
+        } else if (!preqstr.equals(other.preqstr))
             return false;
         return true;
     }
