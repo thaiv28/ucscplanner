@@ -94,7 +94,7 @@ public class CourseService {
         if(courseRepository.findById(id).isPresent()) {
             return courseRepository.findById(id).get();
         } else {
-            System.out.println("Error: Class " + id + " invalid");
+            System.out.println("Error CourseService.getById: Class " + id + " invalid");
             System.exit(2);
             return null;
         }
