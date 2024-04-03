@@ -1,13 +1,9 @@
 package com.thaiv.ucscplanner.services;
 
-import static org.mockito.ArgumentMatchers.nullable;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
