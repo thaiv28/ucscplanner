@@ -2,7 +2,7 @@ package com.thaiv.ucscplanner.models;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-
+import com.thaiv.coursedb.models.Course;
 
 public class PreqResult implements Result{
 

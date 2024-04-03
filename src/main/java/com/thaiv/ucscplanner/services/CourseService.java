@@ -11,8 +11,8 @@ import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thaiv.ucscplanner.models.Course;
-import com.thaiv.ucscplanner.repositories.CourseRepository;
+import com.thaiv.coursedb.models.Course;
+import com.thaiv.coursedb.repositories.CourseRepository;
 
 @Service
 public class CourseService {
@@ -23,13 +23,6 @@ public class CourseService {
     public CourseService(CourseRepository courseRepository){
         this.courseRepository = courseRepository;
         
-    }
-
-    public List<Course> getAllCourses() {
-        courseRepository.save(new Course("CSE120"));
-        List<Course> courses = new ArrayList<>();
-        courseRepository.findAll().forEach(courses::add);
-        return courses;
     }
 
     // return arraylist of courses by parsing through courseFile and 

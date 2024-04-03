@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.thaiv.ucscplanner.models.Course;
+import com.thaiv.coursedb.models.Course;
 import com.thaiv.ucscplanner.models.GenEdResult;
 import com.thaiv.ucscplanner.services.CourseService;
 import com.thaiv.ucscplanner.services.GenEdService;

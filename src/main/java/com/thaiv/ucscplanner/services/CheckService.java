@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.thaiv.ucscplanner.models.Course;
+import com.thaiv.coursedb.models.Course;
 import com.thaiv.ucscplanner.models.Result;
 
 

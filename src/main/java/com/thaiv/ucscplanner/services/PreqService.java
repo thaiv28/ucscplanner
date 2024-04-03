@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thaiv.ucscplanner.models.Course;
+import com.thaiv.coursedb.models.Course;
 import com.thaiv.ucscplanner.models.PreqResult;
 
 @Service
