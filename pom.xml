@@ -3,19 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.4</version>
-	</parent> 
-	<groupId>com.thaiv</groupId>
+		<groupId>com.thaiv.planner-website</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 	<artifactId>ucscplanner</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>ucscplanner</name>
 	<description>A command line interface for ucsc students to plan out their classes and determine if they meet graduation requirements.</description>
-	<properties>
-		<java.version>17</java.version>
-    	<start-class>com.thaiv.ucscplanner.Main</start-class>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>info.picocli</groupId>
@@ -50,6 +44,11 @@
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>5.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thaiv.planner-website</groupId>
+			<artifactId>coursedb</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 
