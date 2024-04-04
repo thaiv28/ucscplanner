@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 __pycache__
 sql.txt
+*.db
 
 ### STS ###
 .apt_generated
