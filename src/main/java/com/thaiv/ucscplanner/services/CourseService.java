@@ -10,16 +10,13 @@ import org.springframework.stereotype.Service;
 import com.thaiv.coursedb.models.Course;
 import com.thaiv.coursedb.repositories.CourseRepository;
 
-@Service
+import lombok.NoArgsConstructor;
+
+@Service @NoArgsConstructor
 public class CourseService {
-
-    private CourseRepository courseRepository;
-
+    
     @Autowired
-    public CourseService(CourseRepository courseRepository){
-        this.courseRepository = courseRepository;
-        
-    }
+    private CourseRepository courseRepository;
 
     // return arraylist of courses by parsing through courseFile and 
     // returning every course from repository
@@ -34,7 +31,7 @@ public class CourseService {
             }
         }
         catch(Exception e) {
-            System.out.println("Error: incorrect file format");
+            System.out.println("Error: " + e);
             System.exit(2);
         }
         return courses;
