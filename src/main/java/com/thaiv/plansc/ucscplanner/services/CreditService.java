@@ -1,11 +1,11 @@
-package com.thaiv.ucscplanner.services;
+package com.thaiv.plansc.ucscplanner.services;
 
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.thaiv.coursedb.models.Course;
-import com.thaiv.ucscplanner.models.CreditResult;
+import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.ucscplanner.models.CreditResult;
 
 @Service
 public class CreditService implements CheckService{

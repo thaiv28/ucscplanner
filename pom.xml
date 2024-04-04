@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.thaiv.planner-website</groupId>
+		<groupId>com.thaiv.plansc</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
@@ -46,7 +46,7 @@
 			<version>5.7.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.thaiv.planner-website</groupId>
+			<groupId>com.thaiv.plansc</groupId>
 			<artifactId>coursedb</artifactId>
 			<version>${project.version}</version>
 		</dependency>

@@ -1,4 +1,4 @@
-package com.thaiv.ucscplanner;
+package com.thaiv.plansc.ucscplanner;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

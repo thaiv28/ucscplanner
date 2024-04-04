@@ -1,4 +1,4 @@
-package com.thaiv.ucscplanner.commands;
+package com.thaiv.plansc.ucscplanner.commands;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.concurrent.Callable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.thaiv.coursedb.models.Course;
-import com.thaiv.ucscplanner.services.CourseService;
-import com.thaiv.ucscplanner.services.CreditService;
+import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.ucscplanner.services.CourseService;
+import com.thaiv.plansc.ucscplanner.services.CreditService;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;

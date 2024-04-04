@@ -1,12 +1,12 @@
-package com.thaiv.ucscplanner.services;
+package com.thaiv.plansc.ucscplanner.services;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thaiv.coursedb.models.Course;
-import com.thaiv.ucscplanner.models.PreqResult;
+import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.ucscplanner.models.PreqResult;
 
 @Service
 public class PreqService implements CheckService{

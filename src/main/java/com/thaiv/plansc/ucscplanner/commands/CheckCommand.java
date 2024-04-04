@@ -1,4 +1,4 @@
-package com.thaiv.ucscplanner.commands;
+package com.thaiv.plansc.ucscplanner.commands;
 
 import org.springframework.stereotype.Component;
 

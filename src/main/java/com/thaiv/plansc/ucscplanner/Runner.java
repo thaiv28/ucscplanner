@@ -1,9 +1,9 @@
-package com.thaiv.ucscplanner;
+package com.thaiv.plansc.ucscplanner;
 
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.stereotype.Component;
 
-import com.thaiv.ucscplanner.commands.CheckCommand;
+import com.thaiv.plansc.ucscplanner.commands.CheckCommand;
 
 import org.springframework.boot.CommandLineRunner;
 

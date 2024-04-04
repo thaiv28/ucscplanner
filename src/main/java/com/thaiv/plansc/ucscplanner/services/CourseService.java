@@ -1,4 +1,4 @@
-package com.thaiv.ucscplanner.services;
+package com.thaiv.plansc.ucscplanner.services;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thaiv.coursedb.models.Course;
-import com.thaiv.coursedb.repositories.CourseRepository;
+import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.coursedb.repositories.CourseRepository;
 
 import lombok.NoArgsConstructor;
 
