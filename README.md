@@ -8,7 +8,7 @@ column.
 Use maven to run the java application. Use the command "checksc" with the csv
 file as the only parameter. In this example we use the 'test' subcommand.
 ```java
-mvn spring-boot:run -Dspring-boot.run.arguments="checksc test example.csv"
+mvn org.springframework.boot:spring-boot-maven-plugin:run -Dspring-boot.run.arguments="checksc test example.csv"
 ```
 This will return a statement confirming or denying that the proposed courses
 will meet graduation requirements. 
