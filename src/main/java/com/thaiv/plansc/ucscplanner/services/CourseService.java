@@ -15,8 +15,12 @@ import lombok.NoArgsConstructor;
 @Service @NoArgsConstructor
 public class CourseService {
     
-    @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    public CourseService(CourseRepository courseRepository){
+        this.courseRepository = courseRepository;
+    }
 
     // return arraylist of courses by parsing through courseFile and 
     // returning every course from repository

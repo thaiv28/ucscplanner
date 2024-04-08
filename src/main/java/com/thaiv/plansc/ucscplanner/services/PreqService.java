@@ -11,8 +11,12 @@ import com.thaiv.plansc.ucscplanner.models.PreqResult;
 @Service
 public class PreqService implements CheckService{
 
-    @Autowired
     CourseService courseService;
+
+    @Autowired
+    public PreqService(CourseService courseService){
+        this.courseService = courseService;
+    }
 
     @Override
     public PreqResult check(ArrayList<Course> courses) {
@@ -42,14 +46,6 @@ public class PreqService implements CheckService{
                 map.put(course, absent);
             }
             
-        }
-
-        for(ArrayList<Course> preqs : map.values()){
-            for(Course course : preqs){
-                if(!totalPreqs.contains(course)){
-                    totalPreqs.add(course);
-                }
-            }
         }
 
         return new PreqResult(map, totalPreqs);
