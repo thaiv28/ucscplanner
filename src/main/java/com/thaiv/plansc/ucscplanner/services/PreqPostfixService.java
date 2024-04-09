@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,13 +43,13 @@ public class PreqPostfixService {
 
         for(String s : infixArray){
             if(preqService.isOperand(s)){
-                postfixQueue.addFirst(s);
+                postfixQueue.addLast(s);
             }
             if(precedenceMap.keySet().contains(s)){
                 while(!operatorStack.isEmpty()){
                     if(precedenceMap.get(operatorStack.peek()) >=
                     precedenceMap.get(s)){
-                        postfixQueue.addFirst(getOperator(operatorStack.pop()));
+                        postfixQueue.addLast(getOperator(operatorStack.pop()));
                     } else {
                         break;
                     }
@@ -57,10 +58,10 @@ public class PreqPostfixService {
             }
         }
         while(!operatorStack.isEmpty()){
-            postfixQueue.addFirst(getOperator(operatorStack.pop()));
+            postfixQueue.addLast(getOperator(operatorStack.pop()));
         }
 
-        return postfixQueue.toString();
+        return StringUtils.join(postfixQueue.toArray(), " ");
     }
 
     public String cleanString(String preqStr){

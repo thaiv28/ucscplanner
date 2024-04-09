@@ -28,6 +28,8 @@ public class PreqService implements CheckService{
 
     }
 
+    
+
     public boolean isOperand(String s){
         if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
             return true;
