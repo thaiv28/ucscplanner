@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
 import com.thaiv.plansc.coursedb.repositories.CourseRepository;
+import com.thaiv.plansc.ucscplanner.models.ExpTree;
 import com.thaiv.plansc.ucscplanner.services.CourseService;
 import com.thaiv.plansc.ucscplanner.services.PreqPostfixService;
 import com.thaiv.plansc.ucscplanner.services.PreqService;
@@ -23,15 +24,16 @@ public class PreqServiceTest {
 
     @Mock
     private CourseRepository courseRepository;
-    private CourseService courseService;
     private PreqService preqService;
     private PreqPostfixService preqPostfixService;
+    private ExpTreeService expTreeService;
 
     @BeforeAll
     void initService(){
         CourseService courseService = new CourseService(courseRepository);
         preqService = new PreqService(courseService);
         preqPostfixService = new PreqPostfixService(preqService);
+        expTreeService = new ExpTreeService(preqService);
     }
 
     @Test
@@ -44,6 +46,7 @@ public class PreqServiceTest {
         System.out.println(replaced);
         System.out.println("Postfix: " + preqPostfixService.convertToPostfix(preq));
 
+        System.out.println(expTreeService.postfixToTree(preqPostfixService.convertToPostfix(preq)));
     }
 
 }
