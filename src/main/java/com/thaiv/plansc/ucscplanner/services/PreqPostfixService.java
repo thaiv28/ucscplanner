@@ -1,29 +1,65 @@
 package com.thaiv.plansc.ucscplanner.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Stack;
 
-import com.thaiv.plansc.coursedb.models.Course;
-import com.thaiv.plansc.coursedb.repositories.CourseRepository;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PreqPostfixService {
-    
-    private CourseService courseService;
 
-    @Autowired
-    public PreqPostfixService(CourseService courseService){
-        this.courseService = courseService;
+    private HashMap<String, Integer> precedenceMap;
+
+    public PreqPostfixService(){
+        precedenceMap = initPrecedenceMap();
     }
 
-    public String convertToPostfix(Course course){
-        String preqStr = course.getPreqstr();
-        String replacedStr = replaceOperators(preqStr);
-
-        return replacedStr;
+    public HashMap<String, Integer> initPrecedenceMap(){
+        HashMap<String, Integer> p = new HashMap<>();
+        p.put("AND", 5);
+        p.put("COMMA", 4);
+        p.put("COMMA-AND", 3);
+        p.put("COMMA-OR", 2);
+        p.put("SEMI-AND", 1);
+        p.put("SEMI-OR", 0);
+        return p;
     }
 
-    public String replaceOperators(String preqStr){
+    public String convertToPostfix(String preqStr){
+        preqStr = cleanString(preqStr);
+
+        String[] infixArray = preqStr.split(" ");
+        infixArray = Arrays.copyOfRange(infixArray, 1, infixArray.length);
+        
+        LinkedList<String> postfixQueue = new LinkedList<String>();
+        Stack<String> operatorStack = new Stack<String>();
+
+        for(String s : infixArray){
+            if(isOperand(s)){
+                postfixQueue.addFirst(s);
+            }
+            if(precedenceMap.keySet().contains(s)){
+                while(!operatorStack.isEmpty()){
+                    if(precedenceMap.get(operatorStack.peek()) >=
+                    precedenceMap.get(s)){
+                        postfixQueue.addFirst(getOperator(operatorStack.pop()));
+                    } else {
+                        break;
+                    }
+                }
+                operatorStack.push(s);
+            }
+        }
+        while(!operatorStack.isEmpty()){
+            postfixQueue.addFirst(getOperator(operatorStack.pop()));
+        }
+
+        return postfixQueue.toString();
+    }
+
+    public String cleanString(String preqStr){
         String replaced = preqStr.replaceAll(", and", "COMMA-AND")
                     .replaceAll(", or", "COMMA-OR")
                     .replaceAll("; or", " SEMI-OR")
@@ -33,6 +69,31 @@ public class PreqPostfixService {
                     .replaceAll("or", "OR")
                     .replaceAll("and", "AND");
 
+        replaced = replaced.replaceAll("\\.", "");
+        replaced = replaced.replaceAll("\\s+(\\d+)", "$1");
+
         return replaced;
     }
+
+    public boolean isOperand(String s){
+        if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
+            return true;
+        } else if(s.equals("permission")){
+            return true;
+        }
+        return false;
+    }
+
+    public String getOperator(String operator){
+        if(operator.equals("OR") || operator.equals("SEMI-OR") || operator.equals("COMMA-OR")){
+            return "OR";
+        }
+        if(operator.equals("AND") || operator.equals("SEMI-AND") || operator.equals("COMMA-AND")){
+            return "AND";
+        }
+        System.out.println("Invalid operator: " + operator);
+        System.exit(1);
+        return null;
+    }
+
 }
