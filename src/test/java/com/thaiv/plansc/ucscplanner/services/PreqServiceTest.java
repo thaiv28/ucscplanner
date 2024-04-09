@@ -31,7 +31,7 @@ public class PreqServiceTest {
     void initService(){
         CourseService courseService = new CourseService(courseRepository);
         preqService = new PreqService(courseService);
-        preqPostfixService = new PreqPostfixService();
+        preqPostfixService = new PreqPostfixService(preqService);
     }
 
     @Test

@@ -5,14 +5,18 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PreqPostfixService {
 
     private HashMap<String, Integer> precedenceMap;
+    private PreqService preqService;
 
-    public PreqPostfixService(){
+    @Autowired
+    public PreqPostfixService(PreqService preqService){
+        this.preqService = preqService; 
         precedenceMap = initPrecedenceMap();
     }
 
@@ -37,7 +41,7 @@ public class PreqPostfixService {
         Stack<String> operatorStack = new Stack<String>();
 
         for(String s : infixArray){
-            if(isOperand(s)){
+            if(preqService.isOperand(s)){
                 postfixQueue.addFirst(s);
             }
             if(precedenceMap.keySet().contains(s)){
@@ -73,15 +77,6 @@ public class PreqPostfixService {
         replaced = replaced.replaceAll("\\s+(\\d+)", "$1");
 
         return replaced;
-    }
-
-    public boolean isOperand(String s){
-        if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
-            return true;
-        } else if(s.equals("permission")){
-            return true;
-        }
-        return false;
     }
 
     public String getOperator(String operator){

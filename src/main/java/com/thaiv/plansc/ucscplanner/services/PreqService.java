@@ -24,32 +24,17 @@ public class PreqService implements CheckService{
         LinkedHashMap<Course, ArrayList<Course>> map = new LinkedHashMap<>();
         ArrayList<Course> totalPreqs = new ArrayList<>();
 
-        for(Course course : courses){
-            
-            // list of prerequisites for specific course
-            ArrayList<Course> preqs = courseService.strToCourseList(course.getPreqs());
-
-            // creates list of absent prereqs
-            ArrayList<Course> absent = new ArrayList<>();
-
-            if(preqs == null){
-                continue;
-            }
-
-            for(Course preq : preqs){
-                if(!courses.contains(preq)){
-                    absent.add(preq);
-                }
-            }
-            
-            if(absent.size() != 0){
-                map.put(course, absent);
-            }
-            
-        }
-
         return new PreqResult(map, totalPreqs);
 
+    }
+
+    public boolean isOperand(String s){
+        if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
+            return true;
+        } else if(s.equals("permission")){
+            return true;
+        }
+        return false;
     }
 
 }
