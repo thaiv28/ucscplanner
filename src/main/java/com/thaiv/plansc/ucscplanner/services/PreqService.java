@@ -6,37 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.ucscplanner.models.ExpTree;
 import com.thaiv.plansc.ucscplanner.models.PreqResult;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class PreqService implements CheckService{
 
-    CourseService courseService;
-
-    @Autowired
-    public PreqService(CourseService courseService){
-        this.courseService = courseService;
-    }
+    final CourseService courseService;
+    final PreqPostfixService preqPostfixService;
+    final ExpTreeService expTreeService;
 
     @Override
     public PreqResult check(ArrayList<Course> courses) {
+        ArrayList<Course> unsatisfiedCourses = new ArrayList<>();
+        boolean allSatisfied = true;
 
-        LinkedHashMap<Course, ArrayList<Course>> map = new LinkedHashMap<>();
-        ArrayList<Course> totalPreqs = new ArrayList<>();
+        for(Course course : courses){
+            String preqStr = course.getPreqstr();
+            if(preqStr == null){
+                continue;
+            }
+            String postfix = preqPostfixService.convertToPostfix(course.getPreqstr());
+            ExpTree tree = expTreeService.postfixToTree(postfix);
+            boolean satisfied = expTreeService.evaluateTree(tree, courses);
 
-        return new PreqResult(map, totalPreqs);
+            if(!satisfied){
+                unsatisfiedCourses.add(course);
+                allSatisfied = false;
+            }
+        }
+
+        return new PreqResult(allSatisfied, unsatisfiedCourses);
 
     }
 
     
-
-    public boolean isOperand(String s){
-        if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
-            return true;
-        } else if(s.equals("permission")){
-            return true;
-        }
-        return false;
-    }
-
 }

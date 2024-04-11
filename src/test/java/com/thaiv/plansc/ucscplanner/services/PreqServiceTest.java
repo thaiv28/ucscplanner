@@ -1,5 +1,8 @@
 package com.thaiv.plansc.ucscplanner.services;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -27,26 +30,26 @@ public class PreqServiceTest {
     private PreqService preqService;
     private PreqPostfixService preqPostfixService;
     private ExpTreeService expTreeService;
+    private String preq;
+    private ArrayList<Course> courses;
 
     @BeforeAll
     void initService(){
         CourseService courseService = new CourseService(courseRepository);
-        preqService = new PreqService(courseService);
-        preqPostfixService = new PreqPostfixService(preqService);
-        expTreeService = new ExpTreeService(preqService);
+        preqPostfixService = new PreqPostfixService();
+        expTreeService = new ExpTreeService(preqPostfixService, courseService, courseRepository);
+        preqService = new PreqService(courseService, preqPostfixService, expTreeService);
+
+        preq = "Prerequisite(s): AM 10 and MATH 11A; or AM 10 and MATH " +
+        "19A; or AM 10 and MATH 20A; or MATH 21 and MATH 11A; or MATH 21 and " +
+        "MATH 19A; or MATH 21 and MATH 20A.";
     }
 
     @Test
     void replaceOperatorsTest(){
-        String preq = "Prerequisite(s): AM 10 and MATH 11A; or AM 10 and MATH " +
-        "19A; or AM 10 and MATH 20A; or MATH 21 and MATH 11A; or MATH 21 and " +
-        "MATH 19A; or MATH 21 and MATH 20A.";
-
         String replaced = preqPostfixService.cleanString(preq);
         System.out.println(replaced);
         System.out.println("Postfix: " + preqPostfixService.convertToPostfix(preq));
-
-        System.out.println(expTreeService.postfixToTree(preqPostfixService.convertToPostfix(preq)));
     }
 
 }

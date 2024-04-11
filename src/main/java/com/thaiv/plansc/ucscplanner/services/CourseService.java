@@ -91,6 +91,14 @@ public class CourseService {
             
     }
 
+    public boolean isCourseTaken(ArrayList<Course> courseList, Course course){
+        return courseList.contains(course);
+    }
+
+    public boolean hasPermission(Course course){
+        return true;
+    }
+
     public String getInfo(Course course) {
         String str = "";
 
