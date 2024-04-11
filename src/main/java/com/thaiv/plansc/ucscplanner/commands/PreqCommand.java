@@ -1,10 +1,12 @@
 package com.thaiv.plansc.ucscplanner.commands;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,31 +36,14 @@ public class PreqCommand implements Callable<Integer> {
         ArrayList<Course> courses = courseService.parseCSV(coursesFile);
 
         PreqResult result = preqService.check(courses);
-        
-        if(result.isSatisfy()){
-            System.out.println("The course list fulfills all " +
-            "prerequisites");
+        if(result.getUnsatisfiedCourses().isEmpty()){
+            System.out.println("All prerequisites are satisfied.");
         } else {
-            System.out.println("The course list does not fulfill the " +
-            "following requirements:");
-
-            LinkedHashMap<Course, ArrayList<Course>> map = result.getMap();
-
-            for(Course course : map.keySet()){
-                System.out.print(course.getCode() + ": ");
-
-                String str = "";
-
-                for(int i = 0; i < map.get(course).size(); i++){
-                    str = str + map.get(course).get(i).getCode();
-                    str = str +", ";
-                }
-                str = str.substring(0, str.length() - 2);
-
-                System.out.print(str+"\n");
-            }
+            System.out.println("Prerequisites not satisifed for: ");
+            String unsatisfiedStr = StringUtils.join(result.getUnsatisfiedCourses(), ", ");
+            System.out.print(unsatisfiedStr + "\n");
         }
-
+        
         return 0;
     }
 }
