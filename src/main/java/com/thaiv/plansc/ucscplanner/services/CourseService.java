@@ -2,6 +2,7 @@ package com.thaiv.plansc.ucscplanner.services;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class CourseService {
         }
 
         for(String str : strList){
-            list.add(getById(str));
+            list.add(getById(str).get());
         }
 
         if(list.size() == 0){
@@ -58,15 +59,15 @@ public class CourseService {
 
     }
 
-    public Course getById(String id_spaces){
+    public Optional<Course> getById(String id_spaces){
 
         String id = id_spaces.replace(" ", "");
 
         if(courseRepository.findById(id).isPresent()) {
-            return courseRepository.findById(id).get();
+            return Optional.of(courseRepository.findById(id).get());
         } else {
             System.out.println("Error CourseService.getById: Class " + id + " invalid");
-            return null;
+            return Optional.empty();
         }
             
     }
