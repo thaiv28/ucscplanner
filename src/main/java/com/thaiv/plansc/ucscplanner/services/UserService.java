@@ -34,17 +34,17 @@ public class UserService {
             return hasPermission(user, parent);
         }
 
-        Course course = courseService.getById(val);
+        Optional<Course> courseWrapper = courseService.getById(val);
 
         // if course is not in database but is valid course, returns false
         // TODO: find way of managing false courses
-        if(course == null){
+        if(!courseWrapper.isPresent()){
             if(preqPostfixService.isOperand(val)){
                 return false;
             }
         }
 
-        return hasTakenCourse(user, course);
+        return hasTakenCourse(user, courseWrapper.get());
 
     }
 
