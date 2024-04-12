@@ -31,19 +31,23 @@ public class CreateUserService {
         try(Scanner scanner = new Scanner(file)){
             while(scanner.hasNextLine()) {
                 String courseString = scanner.nextLine().replaceAll("\\s", "");
+                System.out.println("createUserService courseString: " + courseString);
                 if(courseString.contains("MPE_")){
-                    mpe = Integer.parseInt(returnCode(courseString, "(?<=MPE_\\s)\\d+"));
+                    mpe = Integer.parseInt(returnCode(courseString, "(?<=MPE_)\\d+"));
+                    continue;
                 }
                 if(courseString.contains("PERM_")){
                     Course newPermCourse = courseService.getById(
-                        returnCode(courseString, "(?<=PERM_\\s).+"));
+                        returnCode(courseString, "(?<=PERM_\\s).+")).get();
                     perms.add(newPermCourse);
+                    continue;
                 }
                 if(courseString.contains("AP_")){
                     aps.add(returnCode(courseString, "(?<=AP_\\s).+"));
+                    continue;
                 }
                 
-                courses.add(courseService.getById(courseString));
+                courses.add(courseService.getById(courseString).get());
             }
         }
         catch(Exception e) {
