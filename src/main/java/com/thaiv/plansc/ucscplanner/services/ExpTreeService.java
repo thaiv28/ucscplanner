@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.thaiv.plansc.coursedb.models.Course;
 import com.thaiv.plansc.coursedb.repositories.CourseRepository;
 import com.thaiv.plansc.ucscplanner.models.ExpTree;
+import com.thaiv.plansc.ucscplanner.models.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,30 +20,19 @@ import lombok.RequiredArgsConstructor;
 public class ExpTreeService {
 
     final private PreqPostfixService preqPostfixService;
-    final private CourseService courseService;
-    final private CourseRepository courseRepository;
+    final private UserService userService;
 
-    public boolean evaluateTree(ExpTree tree, ArrayList<Course> courseList){
+    public boolean evaluateTree(ExpTree tree, User user, Course parent){
         if(isLeaf(tree)){
-            if(tree.getVal().equals("permission")){
-                return true;
-            }
-            Optional<Course> course = courseRepository.findById(tree.getVal());
-            if(course.isPresent()){
-                return courseService.isCourseTaken(courseList, course.get());
-            } else {
-                return false;
-            }
-
-            
+            return userService.isSatisfied(user, tree.getVal(), parent);     
         } 
         else if(tree.getVal().equals("OR")){
-            return evaluateTree(tree.getLeft(), courseList)
-            || evaluateTree(tree.getRight(), courseList);
+            return evaluateTree(tree.getLeft(), user, parent)
+            || evaluateTree(tree.getRight(), user, parent);
         }
         else if(tree.getVal().equals("AND")){
-            return evaluateTree(tree.getLeft(), courseList)
-            && evaluateTree(tree.getRight(), courseList);
+            return evaluateTree(tree.getLeft(), user, parent)
+            && evaluateTree(tree.getRight(), user, parent);
         }
 
         System.out.println("Invalid tree value: " + tree.getVal());

@@ -23,19 +23,9 @@ public class TestCommand implements Callable<Integer> {
     @Parameters(paramLabel = "FILE", description = "csv containing " +  
         "list of courses", index = "0")
         File coursesFile;
-    
-    @Autowired
-    private CourseService courseService;
-    @Autowired 
-    private CreditService creditService;
-    @Autowired
-    private GenEdService genEdService;
 
 
     public Integer call() throws Exception {
-        ArrayList<Course> courses = courseService.parseCSV(coursesFile);
-
-        
         return 0;
     }
 }

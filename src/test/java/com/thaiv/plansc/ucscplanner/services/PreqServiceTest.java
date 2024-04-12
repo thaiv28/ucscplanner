@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,14 @@ public class PreqServiceTest {
 
     @Mock
     private CourseRepository courseRepository;
-    private PreqService preqService;
+    @InjectMocks
     private PreqPostfixService preqPostfixService;
-    private ExpTreeService expTreeService;
+    @InjectMocks
     private String preq;
-    private ArrayList<Course> courses;
 
     @BeforeAll
     void initService(){
-        CourseService courseService = new CourseService(courseRepository);
         preqPostfixService = new PreqPostfixService();
-        expTreeService = new ExpTreeService(preqPostfixService, courseService, courseRepository);
-        preqService = new PreqService(courseService, preqPostfixService, expTreeService);
-
         preq = "Prerequisite(s): AM 10 and MATH 11A; or AM 10 and MATH " +
         "19A; or AM 10 and MATH 20A; or MATH 21 and MATH 11A; or MATH 21 and " +
         "MATH 19A; or MATH 21 and MATH 20A.";

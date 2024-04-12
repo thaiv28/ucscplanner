@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
 import com.thaiv.plansc.ucscplanner.models.GenEdResult;
+import com.thaiv.plansc.ucscplanner.models.User;
 
 @Service
 public class GenEdService implements CheckService{
 
     @Override
-    public GenEdResult check(ArrayList<Course> courses){
+    public GenEdResult check(User user){
         HashMap<String, Integer> map = initUserMap();
         HashMap<String, Integer> reqMap = initReqMap();
-        for(Course course : courses){
+        for(Course course : user.getCourses()){
             String genEd = course.getGenEd();
 
             if(genEd == null){

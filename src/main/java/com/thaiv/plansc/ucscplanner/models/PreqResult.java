@@ -1,6 +1,7 @@
 package com.thaiv.plansc.ucscplanner.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.thaiv.plansc.coursedb.models.Course;
 

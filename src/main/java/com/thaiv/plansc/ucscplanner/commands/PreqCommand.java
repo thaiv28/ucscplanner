@@ -12,12 +12,16 @@ import org.springframework.stereotype.Component;
 
 import com.thaiv.plansc.coursedb.models.Course;
 import com.thaiv.plansc.ucscplanner.models.PreqResult;
+import com.thaiv.plansc.ucscplanner.models.User;
 import com.thaiv.plansc.ucscplanner.services.CourseService;
 import com.thaiv.plansc.ucscplanner.services.PreqService;
+import com.thaiv.plansc.ucscplanner.services.UserService;
 
+import lombok.RequiredArgsConstructor;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
+@RequiredArgsConstructor
 @Component
 @Command(name = "preq", mixinStandardHelpOptions = true,
 description = "Ch")
@@ -27,15 +31,14 @@ public class PreqCommand implements Callable<Integer> {
         "list of courses", index = "0")
         File coursesFile;
 
-    @Autowired
-    private CourseService courseService;
-    @Autowired
-    private PreqService preqService;
+    private final CourseService courseService;
+    private final PreqService preqService;
+    private final UserService userService;
 
     public Integer call() throws Exception {
-        ArrayList<Course> courses = courseService.parseCSV(coursesFile);
+        User user = userService.createUser(coursesFile);
 
-        PreqResult result = preqService.check(courses);
+        PreqResult result = preqService.check(user);
         if(result.getUnsatisfiedCourses().isEmpty()){
             System.out.println("All prerequisites are satisfied.");
         } else {

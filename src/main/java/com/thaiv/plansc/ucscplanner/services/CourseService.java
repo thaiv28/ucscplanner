@@ -22,25 +22,6 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    // return arraylist of courses by parsing through courseFile and 
-    // returning every course from repository
-    public ArrayList<Course> parseCSV(File file) {
-        ArrayList<Course> courses = new ArrayList<>();
-        try(Scanner scanner = new Scanner(file)){
-            while(scanner.hasNextLine()) {
-                String courseString = scanner.nextLine().replaceAll("\\s", "");
-                
-                courses.add(getById(courseString));
-             
-            }
-        }
-        catch(Exception e) {
-            System.out.println("Error: " + e);
-            System.exit(2);
-        }
-        return courses;
-    }
-
     public ArrayList<Course> strToCourseList(String courseString){
         ArrayList<Course> list = new ArrayList<>();
 
@@ -85,18 +66,9 @@ public class CourseService {
             return courseRepository.findById(id).get();
         } else {
             System.out.println("Error CourseService.getById: Class " + id + " invalid");
-            System.exit(2);
             return null;
         }
             
-    }
-
-    public boolean isCourseTaken(ArrayList<Course> courseList, Course course){
-        return courseList.contains(course);
-    }
-
-    public boolean hasPermission(Course course){
-        return true;
     }
 
     public String getInfo(Course course) {
@@ -132,5 +104,7 @@ public class CourseService {
         return str;
     }
     
-
+    public int getMpeValue(String s){
+        return Integer.valueOf(s.replaceAll("[a-zA-Z]+", ""));
+    }
 }

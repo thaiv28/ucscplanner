@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.thaiv.plansc.coursedb.models.Course;
+import com.thaiv.plansc.ucscplanner.models.User;
 import com.thaiv.plansc.ucscplanner.services.CourseService;
 import com.thaiv.plansc.ucscplanner.services.CreditService;
+import com.thaiv.plansc.ucscplanner.services.UserService;
 
+import lombok.RequiredArgsConstructor;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
+@RequiredArgsConstructor
 @Component
 @Command(name = "creds", mixinStandardHelpOptions = true,
 description = "Checks given course list to ensure that " + 
@@ -24,21 +28,22 @@ public class CreditCommand implements Callable<Integer> {
         "list of courses", index = "0")
         File coursesFile;
 
-    @Autowired
     private CourseService courseService;
-    @Autowired
     private CreditService creditService;
+    private final UserService userService;
+
 
     public Integer call() throws Exception {
-        ArrayList<Course> courses = courseService.parseCSV(coursesFile);
+        User user = userService.createUser(coursesFile);
 
-        if(creditService.check(courses).isSatsify()){
+
+        if(creditService.check(user).isSatsify()){
             System.out.println("The course list fulfills the graduation requirement " +
-            "for credits. Credit count: " + creditService.getCredits(courses));
+            "for credits. Credit count: " + creditService.getCredits(user));
         } else {
             System.out.println("The course list does not fulfill the graduation " +
             "requirement for number of credits. Credit count: " +
-            creditService.getCredits(courses));
+            creditService.getCredits(user));
         }
         
         return 0;
