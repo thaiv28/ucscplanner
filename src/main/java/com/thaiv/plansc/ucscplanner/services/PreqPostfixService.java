@@ -68,7 +68,7 @@ public class PreqPostfixService {
     }
 
     public String cleanString(String preqStr){
-        System.out.println("original preqstr: " + preqStr);
+        System.out.println("preqpostfixservice: original preqstr: " + preqStr);
         String replaced = preqStr.replaceAll(", and", " COMMA-AND")
                     .replaceAll(", or", " COMMA-OR")
                     .replaceAll("; or", " SEMI-OR")
@@ -78,9 +78,19 @@ public class PreqPostfixService {
                     .replaceAll(" or ", " OR ")
                     .replaceAll(" and ", " AND ");
 
+        int indexPreq = replaced.indexOf("Prerequisite(s):");
+        if(indexPreq != -1){
+            replaced = replaced.substring(indexPreq);
+        }
+
+        int indexPeriod = replaced.indexOf(".");
+        if(indexPeriod != -1){
+            replaced = replaced.substring(0, indexPeriod);
+        }
         replaced = replaced.replaceAll("\\.", "");
         replaced = replaced.replaceAll("  ", " ");
         replaced = replaced.replaceAll("score of (\\d+) OR higher on the mathematics placement examination \\(MPE\\)", "MPE$1");
+        replaced = replaced.replaceAll("mathematics placement \\(MP\\) score of (\\d+) OR higher", "MPE$1");
         System.out.println(replaced);
         replaced = replaced.replaceAll("\\s+(\\d+)", "$1");
 
