@@ -34,6 +34,7 @@ public class PreqService implements CheckService{
             ExpTree tree = expTreeService.postfixToTree(postfix);
             System.out.println("preqservice.java: converted postfix to tree");
             boolean satisfied = expTreeService.evaluateTree(tree, user, course);
+            System.out.println("preqservice.java: evaluated tree");
 
             if(!satisfied){
                 unsatisfiedCourses.add(course);
