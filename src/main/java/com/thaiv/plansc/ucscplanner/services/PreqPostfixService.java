@@ -6,11 +6,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Service
 public class PreqPostfixService {
@@ -90,7 +86,7 @@ public class PreqPostfixService {
         replaced = replaced.replaceAll("\\.", "");
         replaced = replaced.replaceAll("  ", " ");
         replaced = replaced.replaceAll("score of (\\d+) OR higher on the mathematics placement examination \\(MPE\\)", "MPE$1");
-        replaced = replaced.replaceAll("mathematics placement \\(MP\\) score of (\\d+) OR higher", "MPE$1");
+        replaced = replaced.replaceAll("mathematics placement \\(MP\\) score of (\\d+) OR higher", "MPE_$1");
         System.out.println(replaced);
         replaced = replaced.replaceAll("\\s+(\\d+)", "$1");
 
@@ -112,6 +108,8 @@ public class PreqPostfixService {
 
     public boolean isOperand(String s){
         if(s.matches("[A-Za-z]+\\d+[A-Za-z]*")){
+            return true;
+        } else if(s.matches("[A-Za-z]+\\_\\d+[A-Za-z]*")){
             return true;
         } else if(s.equals("permission")){
             return true;

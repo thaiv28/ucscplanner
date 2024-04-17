@@ -25,7 +25,7 @@ public class InfoCommand implements Callable<Integer> {
 
 
     public Integer call() throws Exception {
-        Course course = courseService.getById(code.toUpperCase().replace(" ", ""));
+        Course course = courseService.getById(code.toUpperCase().replace(" ", "")).get();
 
         System.out.println("\n" + course);
         System.out.println(courseService.getInfo(course));

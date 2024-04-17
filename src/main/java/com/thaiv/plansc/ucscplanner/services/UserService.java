@@ -1,9 +1,7 @@
 package com.thaiv.plansc.ucscplanner.services;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 

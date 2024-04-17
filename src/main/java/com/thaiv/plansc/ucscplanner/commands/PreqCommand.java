@@ -1,16 +1,11 @@
 package com.thaiv.plansc.ucscplanner.commands;
 
 import java.io.File;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.thaiv.plansc.coursedb.models.Course;
 import com.thaiv.plansc.ucscplanner.models.PreqResult;
 import com.thaiv.plansc.ucscplanner.models.User;
 import com.thaiv.plansc.ucscplanner.services.CourseService;

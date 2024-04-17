@@ -1,9 +1,7 @@
 package com.thaiv.plansc.ucscplanner.services;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,7 +65,7 @@ public class CourseService {
             return Optional.of(courseRepository.findById(id).get());
         } else {
             System.out.println("Error CourseService.getById: Class " + id + " invalid");
-            return Optional.empty();
+             return Optional.empty();
         }
             
     }

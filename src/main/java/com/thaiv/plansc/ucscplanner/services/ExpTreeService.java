@@ -1,15 +1,11 @@
 package com.thaiv.plansc.ucscplanner.services;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Stack;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
-import com.thaiv.plansc.coursedb.repositories.CourseRepository;
 import com.thaiv.plansc.ucscplanner.models.ExpTree;
 import com.thaiv.plansc.ucscplanner.models.User;
 

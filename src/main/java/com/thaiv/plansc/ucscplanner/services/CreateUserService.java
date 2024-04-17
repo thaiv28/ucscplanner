@@ -2,16 +2,13 @@ package com.thaiv.plansc.ucscplanner.services;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.data.convert.ReadingConverter;
 import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
-import com.thaiv.plansc.coursedb.repositories.CourseRepository;
 import com.thaiv.plansc.ucscplanner.models.User;
 
 import lombok.RequiredArgsConstructor;

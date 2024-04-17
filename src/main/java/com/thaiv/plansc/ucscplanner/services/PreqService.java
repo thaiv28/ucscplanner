@@ -1,8 +1,6 @@
 package com.thaiv.plansc.ucscplanner.services;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thaiv.plansc.coursedb.models.Course;
